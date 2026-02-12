@@ -1,0 +1,46 @@
+#include<bits/stdc++.h>
+using namespace std;
+
+
+int main(){
+    ios::sync_with_stdio(false);
+    cin.tie(nullptr);
+    
+    int t;
+    cin>>t;
+    while(t--){
+        long long a;
+        cin>>a;
+        long long b;
+        cin>>b;
+        long long xk;
+        cin>>xk;
+        long long yk;
+        cin>>yk;
+        long long xq;
+        cin>>xq;
+        long long yq;
+        cin>>yq;
+        
+        set<pair<long long,long long>>kingpos;
+        set<pair<long long,long long>>queenpos;
+        
+        set<pair<long long,long long>>moves = {
+            {a,b},{a,-b},{-a,b},{-a,-b},{b,a},{b,-a},{-b,a},{-b,-a}
+        };
+        for(auto move : moves){
+            kingpos.insert({xk+move.first, yk+move.second});
+            queenpos.insert({xq+move.first,yq+move.second});
+        }
+        int count = 0;
+        for(auto pos : kingpos){
+            if(queenpos.count(pos))
+                count++;
+        }
+        
+        cout<<count<<"\n";
+        
+        
+        
+    }
+}
