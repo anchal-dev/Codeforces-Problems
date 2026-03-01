@@ -1,0 +1,44 @@
+#include<bits/stdc++.h>
+using namespace std;
+
+int main(){
+    ios::sync_with_stdio(false);
+    cin.tie(nullptr);
+    
+    int t;
+    cin >> t;
+
+    while(t--){
+        int n;
+        cin >> n;
+
+        vector<int> a(n);
+        for(int i = 0; i < n; i++)
+            cin >> a[i];
+
+        sort(a.begin(), a.end());
+
+        int maxFreq = 1, count = 1;
+
+        for(int i = 1; i < n; i++){
+            if(a[i] == a[i-1]){
+                count++;
+            } else {
+                maxFreq = max(maxFreq, count);
+                count = 1;
+            }
+        }
+        maxFreq = max(maxFreq, count);
+
+        int operations = 0;
+        int current = maxFreq;
+
+        while(current < n){
+            operations++; 
+            operations += min(current, n-current); 
+            current *= 2;
+        }
+
+        cout << operations << "\n";
+    }
+}
